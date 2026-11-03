@@ -105,6 +105,8 @@ Safety and operational guidance for agents
 - Prefer unit tests (mvn test) for verification — they are fast and deterministic.
 - When adding dependencies, update pom.xml and run mvn -DskipTests=false test to validate.
 - If changing public API/behavior (e.g., multipleOf semantics), add/adjust unit tests and document breaking changes in PR description.
+- Do NOT commit or push. Leave all changes uncommitted in the working tree so the maintainer can review every change and commit/push themselves. This applies even when a fix seems obviously correct or a PR build is failing; describe the changes and stop.
+- Do NOT use git worktrees. Work directly in the main checkout (the repository root), switching branches with `git checkout`/`git switch`. Do not create worktrees (e.g., under `copilot-worktrees/`) for agent tasks — they lock branches such as `master` so they cannot be checked out elsewhere.
 
 Entry template (when adding agents here)
 ----------------------------------------

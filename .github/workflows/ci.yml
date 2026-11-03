@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # pinned; ubuntu-latest is migrating to Ubuntu 26
     env:
       # Exposed at job level so the Sonar step can be skipped when the secret is
       # unavailable (e.g. PRs from forks), while tests still run.
