@@ -33,4 +33,5 @@ Surefire picks up `**/*Test.java` and `**/*Tests.java`. Mockito is declared as a
 
 - **Do not run `Main.main` in CI or casually during debugging** — it prints ~100k lines. Prefer `mvn test` for verification.
 - When changing `multipleOf` semantics, update `MainTest` first and call out the behavior change in the PR description.
-- CI (`.github/workflows/ci.yml`) runs `mvn -B test` on Java 17 (Temurin) for pushes/PRs to `main`/`master` and uploads `target/site/jacoco` as an artifact.
+- CI (`.github/workflows/ci.yml`) runs `mvn -B verify` on Java 17 (Temurin) for pushes/PRs to `main`/`master`, then runs SonarCloud analysis (skipped when the `SONAR_TOKEN` secret is absent, e.g. fork PRs) and uploads `target/site/jacoco` as an artifact. Sonar settings live as `sonar.*` properties in `pom.xml`.
+- Dependabot (`.github/dependabot.yml`) opens weekly PRs for Maven deps and GitHub Actions.
